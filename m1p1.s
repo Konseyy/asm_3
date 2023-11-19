@@ -10,8 +10,8 @@ loop:
   mov r5, r0 @ Copy buffer address to r5
   ldrb r2, [r5], #1 @ Read next byte from buffer
   cmp r2, #0 @ Check if end of string
-  ldr r0, r2 @ Load next byte into r0
-  ldr r1, format_string @ Load format string into r1
+  mov r0, r2 @ Load next byte into r0
+  mov r1, format_string @ Load format string into r1
   b printf @ Print next character
   bxeq lr @ If end of string, return
 @ Check if this character is a letter
