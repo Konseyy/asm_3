@@ -26,9 +26,9 @@ loop:
   beq uppercase @ If first character, this should be a capital letter
   cmp r2, #32 @ Check if this is a space
   beq whitespace @ If space, go to appropriate label
-  bx lr
   cmp r4, #1 @ Check if last character was a space
   beq uppercase @ If last character was a space, this should be a capital letter
+  bx lr
   b lowercase @ If none of the above, this is the middle of a word
 
 uppercase:
