@@ -12,7 +12,7 @@ loop:
   cmp r2, #0 @ Check if end of string
   ldr r0, r2 @ Load next byte into r0
   ldr r1, format_string @ Load format string into r1
-  bx printf @ Print next character
+  b printf @ Print next character
   bxeq lr @ If end of string, return
 @ Check if this character is a letter
   cmp r2, #65
