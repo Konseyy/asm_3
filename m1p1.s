@@ -26,16 +26,18 @@ loop:
   bgt not_letter @ if greater than 122, this is not a letter
 @ check if r2 > 90 && r2 < 97
   cmp r2, #90
-@store whether grater than 90
-@store whether less than 97
-@if both are true, this is not a letter
-@@@@@@ TODO
+  bgt start_check @ if greater than 90, go to start_check, this is possibly a letter
+continue_check:
   cmp r0, r5 @ Check if this is the first character of the string
   beq uppercase @ If first character, this should be a capital letter
   cmp r4, #1 @ Check if last character was a space
   beq uppercase @ If last character was a space, this should be a capital letter
   b lowercase @ If none of the above, this is the middle of a word
 
+start_check:
+  cmp r2, #97
+  blt not_letter @ If less than 97, is not a letter
+  b continue_check @ If greater than 97, go to continue_check
 uppercase:
   mov r4, #0
 @transform this to uppercase if it already isnt
