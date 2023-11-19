@@ -7,7 +7,9 @@ m1p1:
 @ r0 = buffer address
   mov r4, #0 @ Holds whether last character was a space
   mov r5, r0 @ Copy buffer address to r5
+  sub r5, r5, #1 @ Decrement buffer address by 1
 loop:
+  add r5, r5, #1 @ Increment buffer address by 1
   ldrb r2, [r5], #1 @ Read next byte from buffer
   stmfd sp!, {r0-r12, lr}@ Save registers
   mov r1, r2
