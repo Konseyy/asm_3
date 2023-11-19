@@ -24,12 +24,12 @@ loop:
 @@@@@@ TODO
   cmp r0, r5 @ Check if this is the first character of the string
   beq uppercase @ If first character, this should be a capital letter
+  bx lr
   cmp r2, #32 @ Check if this is a space
   beq whitespace @ If space, go to appropriate label
   cmp r4, #1 @ Check if last character was a space
   beq uppercase @ If last character was a space, this should be a capital letter
   b lowercase @ If none of the above, this is the middle of a word
-  bx lr
 
 uppercase:
   mov r4, #0
