@@ -18,6 +18,7 @@ loop:
   bgt loop @ if greater than 122, this is not a letter
 @ check if r2 > 90 && r2 < 97
   cmp r2, #90
+  bx lr
 @store whether grater than 90
 @store whether less than 97
 @if both are true, this is not a letter
