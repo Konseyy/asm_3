@@ -29,6 +29,7 @@ loop:
   cmp r4, #1 @ Check if last character was a space
   beq uppercase @ If last character was a space, this should be a capital letter
   b lowercase @ If none of the above, this is the middle of a word
+  bx lr
 
 uppercase:
   mov r4, #0
