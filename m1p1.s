@@ -28,7 +28,6 @@ loop:
   beq whitespace @ If space, go to appropriate label
   cmp r4, #1 @ Check if last character was a space
   beq uppercase @ If last character was a space, this should be a capital letter
-  bx lr
   b lowercase @ If none of the above, this is the middle of a word
 
 uppercase:
@@ -43,6 +42,7 @@ whitespace:
   b loop
 lowercase:
   mov r4, #0
+  b loop
 @transform this to lowercase if it already isnt
   cmp r2, #91
   addlt r2, r2, #32
