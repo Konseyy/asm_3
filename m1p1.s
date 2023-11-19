@@ -28,7 +28,7 @@ loop:
 uppercase:
   ldr r4, #0
   @transform this to uppercase if it already isnt
-  cmp r2, 96
+  cmp r2, #96
   subgt r2, r2, #32
   strb r2, [r1]
   b loop
@@ -38,7 +38,7 @@ whitespace:
 lowercase:
   mov r4, #0
   @transform this to lowercase if it already isnt
-  cmp r2, 91
+  cmp r2, #91
   addlt r2, r2, #32
   strb r2, [r1]
   b loop
