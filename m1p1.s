@@ -11,7 +11,7 @@ loop:
   ldrb r2, [r5], #0 @ Read next byte from buffer
   stmfd sp!, {r0-r12, lr}@ Save registers
   mov r1, r2
-  ldr r0, f_1
+  ldr r0, f_old
   bl printf
   ldmfd sp!, {r0-r12, lr}@ Restore registers
   cmp r2, #0 @ Check if end of string
@@ -53,9 +53,16 @@ lowercase:
   strb r2, [r5]
   b finish_char
 finish_char:
+  stmfd sp!, {r0-r12, lr}@ Save registers
+  mov r1, r2
+  ldr r0, f_new
+  bl printf
+  ldmfd sp!, {r0-r12, lr}@ Restore registers
   add r5, r5, #1 @ Increment buffer address by 1
   b loop @ Go to next character
 
 @ Format string for printf
-f_1:    .word format
-format: .asciz "%c\n"
+f_old:      .word format_old
+f_new:      .word format_new
+format_old: .asciz "Old: %c\n"
+format_new: .asciz "New: %c\n\n"
