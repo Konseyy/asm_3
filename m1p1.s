@@ -56,6 +56,7 @@ finish_char:
   stmfd sp!, {r0-r12, lr}@ Save registers
   mov r1, r2
   ldr r0, f_new
+  mov r3, r4
   bl printf
   ldmfd sp!, {r0-r12, lr}@ Restore registers
   add r5, r5, #1 @ Increment buffer address by 1
@@ -65,4 +66,4 @@ finish_char:
 f_old:      .word format_old
 f_new:      .word format_new
 format_old: .asciz "Old: %c\n"
-format_new: .asciz "New: %c\n\n"
+format_new: .asciz "New: %c %d\n\n"
