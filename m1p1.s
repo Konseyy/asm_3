@@ -5,7 +5,7 @@ loop:
   mov r1, r0 @ Copy buffer address to r1
   ldrb r2, [r1], #1 @ Read next byte from buffer
   cmp r2, #0 @ Check if end of string
-  beqx lr @ If end of string, return
+  bxeq lr @ If end of string, return
   @ Check if this character is a letter
   cmp r2, #65
   blt loop @ if less than 65, this is not a letter
