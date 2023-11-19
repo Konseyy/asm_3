@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
   }
 
   printf("Content before:\n%s", content);
-  m1p1(content);
+  // m1p1(content);
   printf("Content after:\n%s", content);
 
   free(content);
