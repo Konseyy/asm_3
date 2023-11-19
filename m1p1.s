@@ -52,7 +52,7 @@ lowercase:
   b loop
 
 @ Format string for printf
-format_address:
+.format_address:
   .word format_string
 
 .data
