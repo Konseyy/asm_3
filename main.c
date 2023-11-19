@@ -32,9 +32,9 @@ int main(int argc, char *argv[])
     strcat(content, buffer);
   }
 
-  printf("Content before:\n%s", content);
-  // m1p1(content);
-  printf("Content after:\n%s", content);
+  printf("Content before:\n%s\n", content);
+  m1p1(content);
+  printf("Content after:\n%s\n", content);
 
   free(content);
 
