@@ -16,11 +16,13 @@ loop:
   ldmfd sp!, {r0-r12, lr}@ Restore registers
   cmp r2, #0 @ Check if end of string
   bxeq lr @ If end of string, return
+  cmp r2, #32 @ Check if this is a space
+  beq whitespace @ If space, go to appropriate label
 @ Check if this character is a letter
   cmp r2, #65
-  blt finish_char @ if less than 65, this is not a letter
+  blt not_letter @ if less than 65, this is not a letter
   cmp r2, #122
-  bgt finish_char @ if greater than 122, this is not a letter
+  bgt not_letter @ if greater than 122, this is not a letter
 @ check if r2 > 90 && r2 < 97
   cmp r2, #90
 @store whether grater than 90
@@ -29,8 +31,6 @@ loop:
 @@@@@@ TODO
   cmp r0, r5 @ Check if this is the first character of the string
   beq uppercase @ If first character, this should be a capital letter
-  cmp r2, #32 @ Check if this is a space
-  beq whitespace @ If space, go to appropriate label
   cmp r4, #1 @ Check if last character was a space
   beq uppercase @ If last character was a space, this should be a capital letter
   b lowercase @ If none of the above, this is the middle of a word
@@ -51,6 +51,9 @@ lowercase:
   cmp r2, #91
   addlt r2, r2, #32
   strb r2, [r5]
+  b finish_char
+not_letter:
+  mov r4, #0
   b finish_char
 finish_char:
   stmfd sp!, {r0-r12, lr}@ Save registers
