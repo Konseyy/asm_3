@@ -6,8 +6,8 @@
 m1p1:
 @ r0 = buffer address
   mov r4, #0 @ Holds whether last character was a space
-loop:
   mov r5, r0 @ Copy buffer address to r5
+loop:
   ldrb r2, [r5], #1 @ Read next byte from buffer
   stmfd sp!, {r0-r12, lr}@ Save registers
   mov r1, r2
