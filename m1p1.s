@@ -1,6 +1,6 @@
 .align 2
 @ r0 = buffer address
-ldr r4, #0 @ Holds whether last character was a space
+mov r4, #0 @ Holds whether last character was a space
 loop:
   mov r1, r0 @ Copy buffer address to r1
   ldrb r2, [r1], #1 @ Read next byte from buffer
@@ -26,7 +26,7 @@ loop:
   b lowercase @ If none of the above, this is the middle of a word
 
 uppercase:
-  ldr r4, #0
+  mov r4, #0
   @transform this to uppercase if it already isnt
   cmp r2, #96
   subgt r2, r2, #32
