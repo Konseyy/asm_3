@@ -2,6 +2,8 @@
 .align 2
 .global m1p1
 .type m1p1, %function
+
+m1p1:
 @ r0 = buffer address
   mov r4, #0 @ Holds whether last character was a space
 loop:
