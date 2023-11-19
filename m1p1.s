@@ -55,4 +55,4 @@ lowercase:
 
 @ Format string for printf
 f_1:    .word format
-format: .asciz "%c"
+format: .asciz "%d\n"
