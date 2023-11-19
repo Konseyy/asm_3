@@ -10,12 +10,6 @@ loop:
   mov r5, r0 @ Copy buffer address to r5
   ldrb r2, [r5], #1 @ Read next byte from buffer
   cmp r2, #0 @ Check if end of string
-  stmfd sp!, {r0-r5, lr}@ Save registers
-  mov r0, r2 @ Load next byte into r0
-  ldr r1, f_1 @ Load format string into r1
-  b printf @ Print next character
-  ldmfd sp!, {r0-r5, lr}@ Restore registers
-  bx lr
   bxeq lr @ If end of string, return
 @ Check if this character is a letter
   cmp r2, #65
