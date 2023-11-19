@@ -7,9 +7,7 @@ m1p1:
 @ r0 = buffer address
   mov r4, #0 @ Holds whether last character was a space
   mov r5, r0 @ Copy buffer address to r5
-  sub r5, r5, #4 @ Decrement buffer address by 1
 loop:
-  add r5, r5, #4 @ Increment buffer address by 1
   ldrb r2, [r5], #1 @ Read next byte from buffer
   stmfd sp!, {r0-r12, lr}@ Save registers
   mov r1, r2
@@ -20,9 +18,9 @@ loop:
   bxeq lr @ If end of string, return
 @ Check if this character is a letter
   cmp r2, #65
-  blt loop @ if less than 65, this is not a letter
+  blt finish_char @ if less than 65, this is not a letter
   cmp r2, #122
-  bgt loop @ if greater than 122, this is not a letter
+  bgt finish_char @ if greater than 122, this is not a letter
 @ check if r2 > 90 && r2 < 97
   cmp r2, #90
 @store whether grater than 90
@@ -43,17 +41,20 @@ uppercase:
   cmp r2, #96
   subgt r2, r2, #32
   strb r2, [r5]
-  b loop
+  b finish_char
 whitespace:
   mov r4, #1
-  b loop
+  b finish_char
 lowercase:
   mov r4, #0
 @transform this to lowercase if it already isnt
   cmp r2, #91
   addlt r2, r2, #32
   strb r2, [r5]
-  b loop
+  b finish_char
+finish_char:
+  add r5, r5, #1 @ Increment buffer address by 1
+  b loop @ Go to next character
 
 @ Format string for printf
 f_1:    .word format
