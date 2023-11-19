@@ -9,11 +9,6 @@ m1p1:
   mov r5, r0 @ Copy buffer address to r5
 loop:
   ldrb r2, [r5], #0 @ Read next byte from buffer
-  stmfd sp!, {r0-r12, lr}@ Save registers
-  mov r1, r2
-  ldr r0, f_old
-  bl printf
-  ldmfd sp!, {r0-r12, lr}@ Restore registers
   cmp r2, #0 @ Check if end of string
   bxeq lr @ If end of string, return
   cmp r2, #32 @ Check if this is a space
@@ -62,17 +57,5 @@ not_letter:
   mov r4, #0
   b finish_char
 finish_char:
-  stmfd sp!, {r0-r12, lr}@ Save registers
-  mov r1, r2
-  ldr r0, f_new
-  mov r2, r4
-  bl printf
-  ldmfd sp!, {r0-r12, lr}@ Restore registers
   add r5, r5, #1 @ Increment buffer address by 1
   b loop @ Go to next character
-
-@ Format string for printf
-f_old:      .word format_old
-f_new:      .word format_new
-format_old: .asciz "Old: %c\n"
-format_new: .asciz "New: %c %d\n\n"
