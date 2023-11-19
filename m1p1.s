@@ -7,11 +7,11 @@ m1p1:
 @ r0 = buffer address
   mov r4, #0 @ Holds whether last character was a space
 loop:
-  stmfd sp!, {r0-r5, lr}@ Save registers
+  stmfd sp!, {r0-r12, lr}@ Save registers
   mov r0, #1
   ldr r1, f_1
   bl printf
-  ldmfd sp!, {r0-r5, lr}@ Restore registers
+  ldmfd sp!, {r0-r12, lr}@ Restore registers
   mov r5, r0 @ Copy buffer address to r5
   ldrb r2, [r5], #1 @ Read next byte from buffer
   cmp r2, #0 @ Check if end of string
